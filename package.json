@@ -1,0 +1,24 @@
+{
+  "name": "lm-screenshoter",
+  "version": "0.1.0",
+  "description": "Screenshoter for LM websites",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpodanev/lm-screenshoter.git"
+  },
+  "author": "Mykhailo Podanyev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mpodanev/lm-screenshoter/issues"
+  },
+  "homepage": "https://github.com/mpodanev/lm-screenshoter#readme",
+  "dependencies": {
+    "backstopjs": "^5.0.1",
+    "yargs": "^15.3.1"
+  }
+}
