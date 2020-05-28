@@ -17,7 +17,7 @@ where:
 
 In `index.js` file you need set absolute path in `projectsDirectoryPath` parameter for projects path.
 
-###Examples
+##Examples
 
 Run test:
 * `nmp start -- --test --project="bad-credit-loans.co"`
