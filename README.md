@@ -8,7 +8,7 @@ For the run application you should use the next example command:
 
 where:
 
-* `--test` -- creates a set of test screenshots and compares them with your reference screenshots. You can use short command `-t`.
+* `--test` -- creates a set of test screenshots and compares them with your reference screenshots. You can use an alias `-t`.
 * `--approve` -- if the test you ran looks good, then go ahead and approve it. Approving changes will update your
  reference files with the results from your last test. Future tests are compared against your most recent approved
   test screenshots. You can use a short command `-a`.
