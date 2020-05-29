@@ -13,7 +13,8 @@ if (args.project || args.p) {
 }
 
 const projectPath = `${projectsDirectoryPath}${path.sep}${projectName}`;
-const port = JSON.parse(fs.readFileSync(`${projectPath}${path.sep}${projectName}${path.sep}Properties${path.sep}launchSettings.json`, 'utf8')).iisSettings.iisExpress.sslPort;
+const launchSettings = require(`${projectPath}${path.sep}${projectName}${path.sep}Properties${path.sep}launchSettings.json`);
+const port = launchSettings.iisSettings.iisExpress.sslPort;
 const localhostUrl = 'https://localhost:' + port;
 
 const projectConfig = require('./backstop.config.js')({
@@ -25,14 +26,14 @@ const projectConfig = require('./backstop.config.js')({
 let commandToRun = '';
 
 if (args.test || args.t) {
-    commandToRun = "test";
+    commandToRun = 'test';
 } else if ((args.approve || args.a)) {
-    commandToRun = "approve";
+    commandToRun = 'approve';
 } else {
     console.error('You need to use argument "--test" or "--approve"');
 }
 
-if( "" !== commandToRun ) {
+if( '' !== commandToRun ) {
     backstop(commandToRun, { config: projectConfig });
 }
 
@@ -46,13 +47,11 @@ function getScenariosForProject(projectPath) {
     // _.remove(pages, isPageToIgnore);
 
     scenarios = pages.map(page => {
-        const scenarioLabel = page.split(".")[0].split("-").join(" ");
-
         return {
-            "label": scenarioLabel,
-            "url": `${localhostUrl}/${page}`,
-            "delay": 500,
-            "misMatchThreshold" : 0.1
+            'label': page,
+            'url': `${localhostUrl}/${page}`,
+            'delay': 500,
+            'misMatchThreshold' : 0.1
         }
     });
 
