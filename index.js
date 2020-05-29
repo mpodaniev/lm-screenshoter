@@ -13,8 +13,8 @@ if (args.project || args.p) {
 }
 
 const projectPath = `${projectsDirectoryPath}${path.sep}${projectName}`;
-const localhost = 'https://localhost:' + JSON.parse(fs.readFileSync(`${projectPath}${path.sep}${projectName}${path.sep}Properties${path.sep}launchSettings.json`, 'utf8'))
-    .iisSettings.iisExpress.sslPort;
+const port = JSON.parse(fs.readFileSync(`${projectPath}${path.sep}${projectName}${path.sep}Properties${path.sep}launchSettings.json`, 'utf8')).iisSettings.iisExpress.sslPort;
+const localhostUrl = 'https://localhost:' + port;
 
 const projectConfig = require('./backstop.config.js')({
     'project': projectName,
@@ -50,7 +50,7 @@ function getScenariosForProject(projectPath) {
 
         return {
             "label": scenarioLabel,
-            "url": `${localhost}/${page}`,
+            "url": `${localhostUrl}/${page}`,
             "delay": 500,
             "misMatchThreshold" : 0.1
         }
