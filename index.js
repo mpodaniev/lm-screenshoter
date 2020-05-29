@@ -47,10 +47,8 @@ function getScenariosForProject(projectPath) {
     // _.remove(pages, isPageToIgnore);
 
     scenarios = pages.map(page => {
-        const scenarioLabel = page.split(".")[0].split("-").join(" ");
-
         return {
-            'label': scenarioLabel,
+            'label': page,
             'url': `${localhostUrl}/${page}`,
             'delay': 500,
             'misMatchThreshold' : 0.1
