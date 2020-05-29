@@ -1,10 +1,10 @@
 # How to use
 
-First of all, should install packages `npm ci` and `backstop init`.
+First of all, should install packages `npm ci` and init backstop `npm run init`.
 
 For the run application you should use the next example command:
 
-`nmp start -- --test --project="project-name"`
+`npm start -- --test --project="project-name"`
 
 where:
 
@@ -20,9 +20,9 @@ In `index.js` file you need set absolute path in `projectsDirectoryPath` paramet
 ##Examples
 
 Run test:
-* `nmp start -- --test --project="bad-credit-loans.co"`
-* `nmp start -- -t -p bad-credit-loans.co`
+* `npm start -- --test --project="bad-credit-loans.co"`
+* `npm start -- -t -p bad-credit-loans.co`
 
 Approve test:
-* `nmp start -- --approve --project="bad-credit-loans.co"`
-* `nmp start -- -a -p bad-credit-loans.co`
+* `npm start -- --approve --project="bad-credit-loans.co"`
+* `npm start -- -a -p bad-credit-loans.co`

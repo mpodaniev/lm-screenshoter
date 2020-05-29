@@ -6,7 +6,7 @@ const path = require('path');
 
 
 let projectName = '';
-if (args.p || args.project) {
+if (args.project || args.p) {
     projectName = args.p ? args.p : args.project;
 } else {
     console.error('You need to pass project name in argument "--project"')
@@ -17,8 +17,8 @@ const localhost = 'https://localhost:' + JSON.parse(fs.readFileSync(`${projectPa
     .iisSettings.iisExpress.sslPort;
 
 const projectConfig = require('./backstop.config.js')({
-    "project": projectName,
-    "scenarios": getScenariosForProject(projectPath)
+    'project': projectName,
+    'scenarios': getScenariosForProject(projectPath)
 });
 
 
@@ -37,20 +37,20 @@ if( "" !== commandToRun ) {
 }
 
 function getScenariosForProject(projectPath) {
-    const files = fs.readdirSync(`${projectPath}\\${projectName}\\Views\\Home`)
+    const pages = fs.readdirSync(`${projectPath}\\${projectName}\\Views\\Home`)
         .map(it => it.slice(0, it.indexOf('.')));
 
     let scenarios;
 
     //todo
-    // _.remove(files, isFileToIgnore);
+    // _.remove(pages, isPageToIgnore);
 
-    scenarios = files.map(file => {
-        const scenarioLabel = file.split(".")[0].split("-").join(" ");
+    scenarios = pages.map(page => {
+        const scenarioLabel = page.split(".")[0].split("-").join(" ");
 
         return {
             "label": scenarioLabel,
-            "url": `${localhost}/${file}`,
+            "url": `${localhost}/${page}`,
             "delay": 500,
             "misMatchThreshold" : 0.1
         }
