@@ -44,7 +44,7 @@ if( '' !== commandToRun ) {
 }
 
 function getScenariosForProject(projectPath) {
-    const pages = fs.readdirSync(`${projectPath}\\Views\\Home`)
+    const pages = fs.readdirSync(`${projectPath}${path.sep}Views${path.sep}Home`)
         .map(it => it.slice(0, it.indexOf('.')));
 
     let scenarios;
