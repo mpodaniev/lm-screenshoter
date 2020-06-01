@@ -15,10 +15,9 @@ if (args.project || args.p) {
 
 let projectPath = `${projectsDirectoryPath}${path.sep}${projectName}`;
 
-if (fs.readdirSync(`${projectsDirectoryPath}${path.sep}${projectName}`).find(it => it === projectName)) {
+if (fs.existsSync(projectPath.concat(`${path.sep}${projectName}`))) {
     projectPath = projectPath.concat(`${path.sep}${projectName}`);
 }
-
 
 const launchSettings = require(`${projectPath}${path.sep}Properties${path.sep}launchSettings.json`);
 const port = launchSettings.iisSettings.iisExpress.sslPort;
