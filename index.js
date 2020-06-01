@@ -12,8 +12,15 @@ if (args.project || args.p) {
     console.error('You need to pass project name in argument "--project"')
 }
 
-const projectPath = `${projectsDirectoryPath}${path.sep}${projectName}`;
-const launchSettings = require(`${projectPath}${path.sep}${projectName}${path.sep}Properties${path.sep}launchSettings.json`);
+
+let projectPath = `${projectsDirectoryPath}${path.sep}${projectName}`;
+
+if (fs.readdirSync(`${projectsDirectoryPath}${path.sep}${projectName}`).find(it => it === projectName)) {
+    projectPath = projectPath.concat(`${path.sep}${projectName}`);
+}
+
+
+const launchSettings = require(`${projectPath}${path.sep}Properties${path.sep}launchSettings.json`);
 const port = launchSettings.iisSettings.iisExpress.sslPort;
 const localhostUrl = 'https://localhost:' + port;
 
@@ -38,7 +45,7 @@ if( '' !== commandToRun ) {
 }
 
 function getScenariosForProject(projectPath) {
-    const pages = fs.readdirSync(`${projectPath}\\${projectName}\\Views\\Home`)
+    const pages = fs.readdirSync(`${projectPath}\\Views\\Home`)
         .map(it => it.slice(0, it.indexOf('.')));
 
     let scenarios;
