@@ -1,6 +1,13 @@
-# How to use
+#LM Screenshoter
+Automates visual regression testing
 
-First of all, should install packages `npm ci` and init backstop `npm run init`.
+##Installation
+First of all, should install packages `npm ci`.
+
+Then init backstop `npm run init`.
+
+##Usage
+In `index.js` file you need set absolute path in `projectsDirectoryPath` parameter for projects path.
 
 For the run application you should use the next example command:
 
@@ -14,8 +21,6 @@ where:
   test screenshots. You can use an alias `-a`.
 * `--project` -- set `project-name` to specify the project folder you'd like to test. You can use an alias `-p
 `. Also, you can use parameter without equals symbol like this: `-p project-name`.
-
-In `index.js` file you need set absolute path in `projectsDirectoryPath` parameter for projects path.
 
 ##Examples
 
