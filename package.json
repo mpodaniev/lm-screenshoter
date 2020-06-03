@@ -20,6 +20,7 @@
   "homepage": "https://github.com/mpodanev/lm-screenshoter#readme",
   "dependencies": {
     "backstopjs": "^5.0.1",
+    "enquirer": "^2.3.5",
     "yargs": "^15.3.1"
   }
 }
