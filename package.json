@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "bs": "node readline.js",
     "test": "test",
     "init": "./node_modules/.bin/backstop init && rm backstop.json"
   },
