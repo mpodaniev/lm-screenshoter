@@ -39,4 +39,3 @@ module.exports = options => {
     debugWindow: false
   };
 };
-
