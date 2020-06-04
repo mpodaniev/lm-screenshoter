@@ -21,12 +21,11 @@ const autoComplete = new AutoComplete({
 
 let params = {};
 
-select.run()
-    .then(answer => params.commandToRun = answer)
-    .then(() => autoComplete.run())
-    .then(answer => params.projectName = answer)
-    .then(() => launchBackstop())
-    .catch(console.error);
+async function run() {
+    params.commandToRun = await select.run();
+    params.projectName = await autoComplete.run();
+    launchBackstop();
+}
 
 function launchBackstop() {
     const projectConfig = require('./backstop.config.js')({
@@ -38,3 +37,5 @@ function launchBackstop() {
         backstop(params.commandToRun, { config: projectConfig });
     }
 }
+
+run();
