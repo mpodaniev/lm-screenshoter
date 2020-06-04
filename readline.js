@@ -1,7 +1,7 @@
-const settings = require('./settings.json');
 const fs = require('fs');
 const { AutoComplete, Select } = require('enquirer');
 const launchBackstop = require('./utils').launchBackstop;
+const projectsDirectoryPath = require('./utils').projectsDirectoryPath;
 
 const select = new Select({
     name: 'workflow',
@@ -14,13 +14,13 @@ const autoComplete = new AutoComplete({
     message: 'Choose your project',
     limit: 10,
     initial: 2,
-    choices: fs.readdirSync(settings.projectsDirectoryPath)
+    choices: fs.readdirSync(projectsDirectoryPath)
 });
 
 async function run() {
     const commandToRun = await select.run();
     const projectName = await autoComplete.run();
-    launchBackstop(commandToRun, projectName, settings.projectsDirectoryPath);
+    launchBackstop(commandToRun, projectName);
 }
 
 run();

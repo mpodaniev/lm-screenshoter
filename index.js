@@ -1,4 +1,3 @@
-const settings = require('./settings.json');
 const args = require('yargs').argv;
 const launchBackstop = require('./utils').launchBackstop;
 
@@ -19,4 +18,4 @@ if (args.test || args.t) {
     console.error('You need to use argument "--test" or "--approve"');
 }
 
-launchBackstop(commandToRun, projectName, settings.projectsDirectoryPath);
+launchBackstop(commandToRun, projectName);
