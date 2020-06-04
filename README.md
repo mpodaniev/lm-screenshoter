@@ -22,6 +22,8 @@ where:
 * `--project` -- set `project-name` to specify the project folder you'd like to test. You can use an alias `-p
 `. Also, you can use parameter without equals symbol like this: `-p project-name`.
 
+Or you can run `npm run bs` and answer on questions with enjoy :)
+
 ##Examples
 
 Run test:

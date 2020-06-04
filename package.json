@@ -1,10 +1,11 @@
 {
   "name": "lm-screenshoter",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Screenshoter for LM websites",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "bs": "node readline.js",
     "test": "test",
     "init": "./node_modules/.bin/backstop init && rm backstop.json"
   },
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/mpodanev/lm-screenshoter#readme",
   "dependencies": {
     "backstopjs": "^5.0.1",
+    "enquirer": "^2.3.5",
     "yargs": "^15.3.1"
   }
 }
