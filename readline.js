@@ -18,12 +18,10 @@ const autoComplete = new AutoComplete({
     choices: fs.readdirSync(projectsDirectoryPath)
 });
 
-let params = {};
-
 async function run() {
-    params.commandToRun = await select.run();
-    params.projectName = await autoComplete.run();
-    launchBackstop(params.commandToRun, params.projectName, projectsDirectoryPath);
+    const commandToRun = await select.run();
+    const projectName = await autoComplete.run();
+    launchBackstop(commandToRun, projectName, projectsDirectoryPath);
 }
 
 run();
