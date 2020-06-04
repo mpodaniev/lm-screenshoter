@@ -7,7 +7,7 @@ First of all, should install packages `npm ci`.
 Then init backstop `npm run init`.
 
 ##Usage
-In `index.js` file you need set absolute path in `projectsDirectoryPath` parameter for projects path.
+In `settings.json` file you need set absolute path in `projectsDirectoryPath` parameter for projects path.
 
 For the run application you should use the next example command:
 

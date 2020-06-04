@@ -1,5 +1,4 @@
-const projectsDirectoryPath = 'C:\\LM';
-
+const settings = require('./settings.json');
 const fs = require('fs');
 const { AutoComplete, Select } = require('enquirer');
 const launchBackstop = require('./utils').launchBackstop;
@@ -15,13 +14,13 @@ const autoComplete = new AutoComplete({
     message: 'Choose your project',
     limit: 10,
     initial: 2,
-    choices: fs.readdirSync(projectsDirectoryPath)
+    choices: fs.readdirSync(settings.projectsDirectoryPath)
 });
 
 async function run() {
     const commandToRun = await select.run();
     const projectName = await autoComplete.run();
-    launchBackstop(commandToRun, projectName, projectsDirectoryPath);
+    launchBackstop(commandToRun, projectName, settings.projectsDirectoryPath);
 }
 
 run();
