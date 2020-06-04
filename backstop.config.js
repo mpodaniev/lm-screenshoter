@@ -19,8 +19,6 @@ module.exports = options => {
       }
     ],
     scenarios: options.scenarios,
-    onBeforeScript: "puppet/onBefore.js",
-    onReadyScript: "puppet/onReady.js",
     "paths": {
       bitmaps_reference: `backstop_data/${options.project}/bitmaps_reference`,
       bitmaps_test: `backstop_data/${options.project}/bitmaps_test`,
@@ -39,4 +37,3 @@ module.exports = options => {
     debugWindow: false
   };
 };
-

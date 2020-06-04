@@ -1,5 +1,3 @@
-const projectsDirectoryPath = 'C:\\LM';
-
 const args = require('yargs').argv;
 const launchBackstop = require('./utils').launchBackstop;
 
@@ -20,4 +18,4 @@ if (args.test || args.t) {
     console.error('You need to use argument "--test" or "--approve"');
 }
 
-launchBackstop(commandToRun, projectName, projectsDirectoryPath);
+launchBackstop(commandToRun, projectName);

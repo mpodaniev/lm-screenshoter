@@ -1,6 +1,8 @@
+const settings = require('./settings.json');
 const fs = require('fs');
 const path = require('path');
 const backstop = require('backstopjs');
+const projectsDirectoryPath = exports.projectsDirectoryPath = settings.projectsDirectoryPath.replace(/[\\]/g, path.sep);
 
 const getScenariosForProject = function (projectsDirectoryPath, projectName) {
     let projectPath = `${projectsDirectoryPath}${path.sep}${projectName}`;
@@ -33,7 +35,7 @@ const getScenariosForProject = function (projectsDirectoryPath, projectName) {
     return scenarios;
 }
 
-exports.launchBackstop = function (commandToRun, projectName, projectsDirectoryPath) {
+exports.launchBackstop = function (commandToRun, projectName) {
     const projectConfig = require('./backstop.config.js')({
         'project': projectName,
         'scenarios': getScenariosForProject(projectsDirectoryPath, projectName)

@@ -1,8 +1,7 @@
-const projectsDirectoryPath = 'C:\\LM';
-
 const fs = require('fs');
 const { AutoComplete, Select } = require('enquirer');
 const launchBackstop = require('./utils').launchBackstop;
+const projectsDirectoryPath = require('./utils').projectsDirectoryPath;
 
 const select = new Select({
     name: 'workflow',
@@ -21,7 +20,7 @@ const autoComplete = new AutoComplete({
 async function run() {
     const commandToRun = await select.run();
     const projectName = await autoComplete.run();
-    launchBackstop(commandToRun, projectName, projectsDirectoryPath);
+    launchBackstop(commandToRun, projectName);
 }
 
 run();
