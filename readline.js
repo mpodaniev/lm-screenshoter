@@ -1,9 +1,8 @@
 const projectsDirectoryPath = 'C:\\LM';
 
-const backstop = require('backstopjs');
 const fs = require('fs');
 const { AutoComplete, Select } = require('enquirer');
-const getScenariosForProject = require('./util.js').getScenariosForProject;
+const launchBackstop = require('./utils').launchBackstop;
 
 const select = new Select({
     name: 'workflow',
@@ -24,18 +23,7 @@ let params = {};
 async function run() {
     params.commandToRun = await select.run();
     params.projectName = await autoComplete.run();
-    launchBackstop();
-}
-
-function launchBackstop() {
-    const projectConfig = require('./backstop.config.js')({
-        'project': params.projectName,
-        'scenarios': getScenariosForProject(projectsDirectoryPath, params.projectName)
-    });
-
-    if( '' !== params.commandToRun ) {
-        backstop(params.commandToRun, { config: projectConfig });
-    }
+    launchBackstop(params.commandToRun, params.projectName, projectsDirectoryPath);
 }
 
 run();

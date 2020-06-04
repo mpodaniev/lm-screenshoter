@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const backstop = require('backstopjs');
 
-exports.getScenariosForProject = function (projectsDirectoryPath, projectName) {
+const getScenariosForProject = function (projectsDirectoryPath, projectName) {
     let projectPath = `${projectsDirectoryPath}${path.sep}${projectName}`;
 
     if (fs.existsSync(projectPath.concat(`${path.sep}${projectName}`))) {
@@ -30,4 +31,15 @@ exports.getScenariosForProject = function (projectsDirectoryPath, projectName) {
     });
 
     return scenarios;
+}
+
+exports.launchBackstop = function (commandToRun, projectName, projectsDirectoryPath) {
+    const projectConfig = require('./backstop.config.js')({
+        'project': projectName,
+        'scenarios': getScenariosForProject(projectsDirectoryPath, projectName)
+    });
+
+    if( commandToRun !== '' ) {
+        backstop(commandToRun, { config: projectConfig });
+    }
 }

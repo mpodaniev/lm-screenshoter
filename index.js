@@ -1,8 +1,7 @@
 const projectsDirectoryPath = 'C:\\LM';
 
-const backstop = require('backstopjs');
 const args = require('yargs').argv;
-const getScenariosForProject = require('./util.js').getScenariosForProject;
+const launchBackstop = require('./utils').launchBackstop;
 
 
 let projectName = '';
@@ -12,14 +11,7 @@ if (args.project || args.p) {
     console.error('You need to pass project name in argument "--project"')
 }
 
-const projectConfig = require('./backstop.config.js')({
-    'project': projectName,
-    'scenarios': getScenariosForProject(projectsDirectoryPath, projectName)
-});
-
-
 let commandToRun = '';
-
 if (args.test || args.t) {
     commandToRun = 'test';
 } else if ((args.approve || args.a)) {
@@ -28,6 +20,4 @@ if (args.test || args.t) {
     console.error('You need to use argument "--test" or "--approve"');
 }
 
-if( '' !== commandToRun ) {
-    backstop(commandToRun, { config: projectConfig });
-}
+launchBackstop(commandToRun, projectName, projectsDirectoryPath);
