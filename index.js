@@ -21,7 +21,7 @@ if (args.test || args.t) {
 async function run() {
   try {
     const availableLocalHost = await checkLocalHost(projectName);
-    if (availableLocalHost === true) {
+    if (availableLocalHost) {
       launchBackstop(commandToRun, projectName);
     }
   } catch (e) {
