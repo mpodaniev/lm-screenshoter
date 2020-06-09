@@ -21,10 +21,8 @@ async function run() {
     const commandToRun = await select.run();
     const projectName = await autoComplete.run();
     const availableLocalHost = await checkLocalHost(projectName);
-    if (availableLocalHost) {
+    if (availableLocalHost === true) {
       launchBackstop(commandToRun, projectName);
-    } else {
-      console.error('LocalHost is not available!');
     }
   } catch (e) {
     console.log(e);

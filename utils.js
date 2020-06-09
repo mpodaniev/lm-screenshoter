@@ -2,7 +2,7 @@ const settings = require('./settings.json');
 const fs = require('fs');
 const path = require('path');
 const backstop = require('backstopjs');
-const projectsDirectoryPath = exports.projectsDirectoryPath = settings.projectsDirectoryPath;
+const projectsDirectoryPath = settings.projectsDirectoryPath;
 const http = require('http');
 
 const getProjectPath = function (projectName) {
@@ -26,12 +26,12 @@ const getLocalhostUrl = function (projectName) {
 }
 
 exports.checkLocalHost = function (projectName) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     http.get(getLocalhostUrl(projectName), (res) => {
       let statusCode = res.statusCode;
       resolve(statusCode === 200);
     }).on('error', (e) => {
-      console.log(`LocalHost is not available: ${e.message}`);
+      reject(`\nERROR: LocalHost ${getLocalhostUrl(projectName)} is not available`);
     });
   })
 }
@@ -57,6 +57,8 @@ const getScenariosForProject = function (getProjectPath, projectName) {
 
     return scenarios;
 }
+
+exports.projectsDirectoryPath = projectsDirectoryPath;
 
 exports.launchBackstop = function (commandToRun, projectName) {
     const projectConfig = require('./backstop.config.js')({
