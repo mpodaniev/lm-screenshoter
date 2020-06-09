@@ -1,5 +1,5 @@
 const args = require('yargs').argv;
-const launchBackstop = require('./utils').launchBackstop;
+const {launchBackstop, checkLocalHost} = require('./utils');
 
 
 let projectName = '';
@@ -18,4 +18,15 @@ if (args.test || args.t) {
     console.error('You need to use argument "--test" or "--approve"');
 }
 
-launchBackstop(commandToRun, projectName);
+async function run() {
+  try {
+    const availableLocalHost = await checkLocalHost(projectName);
+    if (availableLocalHost) {
+      launchBackstop(commandToRun, projectName);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+run();
