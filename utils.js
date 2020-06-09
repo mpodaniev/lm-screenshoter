@@ -29,8 +29,14 @@ exports.checkLocalHost = function (projectName) {
   return new Promise((resolve, reject) => {
     http.get(getLocalhostUrl(projectName), (res) => {
       let statusCode = res.statusCode;
-      resolve(statusCode === 200);
-    }).on('error', (e) => {
+
+      if (statusCode === 200) {
+        resolve(true);
+      } else {
+        reject(`\nERROR: Some problems with the server. Please check localhost availability`);
+      }
+
+    }).on('error', () => {
       reject(`\nERROR: LocalHost ${getLocalhostUrl(projectName)} is not available`);
     });
   })
