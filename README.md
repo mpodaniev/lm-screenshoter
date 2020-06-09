@@ -1,12 +1,12 @@
-#LM Screenshoter
+# LM Screenshoter
 Automates visual regression testing
 
-##Installation
+## Installation
 First of all, should install packages `npm ci`.
 
 Then init backstop `npm run init`.
 
-##Usage
+## Usage
 In `settings.json` file you need set absolute path in `projectsDirectoryPath` parameter for projects path.
 
 For the run application you should use the next example command:
@@ -24,7 +24,7 @@ where:
 
 Or you can run `npm run bs` and answer on questions with enjoy :)
 
-##Examples
+## Examples
 
 Run test:
 * `npm start -- --test --project="bad-credit-loans.co"`
