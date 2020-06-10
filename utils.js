@@ -42,7 +42,7 @@ exports.checkLocalHost = function (projectName) {
   })
 }
 
-const getScenariosForProject = function (getProjectPath, projectName) {
+const getScenariosForLocalProject = function (getProjectPath, projectName) {
 
     const pages = fs.readdirSync(`${getProjectPath(projectName)}${path.sep}Views${path.sep}Home`)
         .map(it => it.slice(0, it.indexOf('.')));
@@ -64,15 +64,44 @@ const getScenariosForProject = function (getProjectPath, projectName) {
     return scenarios;
 }
 
+const getScenariosForHostProject = function (getProjectPath, projectName) {
+
+    const pages = settings.pages;
+
+    let scenarios;
+
+    scenarios = pages.map(page => {
+        return {
+            'label': page,
+            'url': `http://${projectName.replace(/[.]/, '_')}.lmwebsites.net/${page}`,
+            'delay': 500,
+            'misMatchThreshold' : 0.1
+        }
+    });
+
+    return scenarios;
+}
+
 exports.projectsDirectoryPath = projectsDirectoryPath;
 
-exports.launchBackstop = function (commandToRun, projectName) {
+exports.launchBackstopLocal = function (commandToRun, projectName) {
     const projectConfig = require('./backstop.config.js')({
-        'project': projectName,
-        'scenarios': getScenariosForProject(getProjectPath, projectName)
+        'project': `${projectName}/local`,
+        'scenarios': getScenariosForLocalProject(getProjectPath, projectName)
     });
 
     if( commandToRun !== '' ) {
         backstop(commandToRun, { config: projectConfig });
     }
+}
+
+exports.launchBackstopDev = function (commandToRun, projectName) {
+  const projectConfig = require('./backstop.config.js')({
+    'project': `${projectName}/dev`,
+    'scenarios': getScenariosForHostProject(getProjectPath, projectName)
+  });
+
+  if( commandToRun !== '' ) {
+    backstop(commandToRun, { config: projectConfig });
+  }
 }

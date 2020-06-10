@@ -1,6 +1,5 @@
 const args = require('yargs').argv;
-const {launchBackstop, checkLocalHost} = require('./utils');
-
+const {launchBackstopLocal, checkLocalHost} = require('./utils');
 
 let projectName = '';
 if (args.project || args.p) {
@@ -22,7 +21,7 @@ async function run() {
   try {
     const availableLocalHost = await checkLocalHost(projectName);
     if (availableLocalHost) {
-      launchBackstop(commandToRun, projectName);
+      launchBackstopLocal(commandToRun, projectName);
     }
   } catch (e) {
     console.log(e);
