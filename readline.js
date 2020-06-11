@@ -9,7 +9,7 @@ const workflow = new Select({
 });
 
 const env = new Select({
-  name: 'workflow',
+  name: 'env',
   message: 'Choose environment',
   choices: ['local', 'dev']
 });
