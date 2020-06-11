@@ -68,7 +68,6 @@ const getScenariosForHostProject = function (getProjectPath, projectName) {
 
     const pages = settings.pages;
 
-
     const scenarios = pages.map(page => {
         return {
             'label': page,
