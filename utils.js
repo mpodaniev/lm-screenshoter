@@ -70,7 +70,7 @@ const getScenariosForHostProject = function (getProjectPath, projectName) {
 
     let scenarios;
 
-    scenarios = pages.map(page => {
+    const scenarios = pages.map(page => {
         return {
             'label': page,
             'url': `http://${projectName.replace(/[.]/, '_')}.lmwebsites.net/${page}`,
