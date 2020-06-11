@@ -1,3 +1,26 @@
 {
-  "projectsDirectoryPath": "C:\\LM"
+  "projectsDirectoryPath": "C:\\LM",
+  "pages": [
+    "AboutUs",
+    "Contact",
+    "Definitions",
+    "Disclaimer",
+    "EConsent",
+    "Form",
+    "Form36",
+    "GetCashNow",
+    "GetStarted",
+    "HowItWorks",
+    "Index",
+    "LendingPolicy",
+    "Loan",
+    "Login",
+    "PrivacyPolicy",
+    "Questions",
+    "RatesAndFees",
+    "TermsOfUse",
+    "Unsubscribe",
+    "Welcome",
+    "WhyChooseUs"
+  ]
 }
