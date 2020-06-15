@@ -129,7 +129,7 @@ exports.launchBackstop = async function (commandToRun, projectName, environment)
     const scenarios = await getScenarios(getProjectPath, projectName, environment);
 
     const projectConfig = require('./backstop.config.js')({
-      'project': `${projectName}/environment`,
+      'project': `${projectName}/${environment}`,
       'scenarios': scenarios
     });
 
