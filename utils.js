@@ -49,7 +49,9 @@ const checkHttpAvailable = function (url) {
 
 const checkHttpsAvailable = function (url) {
   return new Promise((resolve) => {
-    process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+    if (url.includes('localhost')) {
+      process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0; //Ignore invalid self-signed ssl certificate
+    }
     https.get(url, (res) => {
       let statusCode = res.statusCode;
 
@@ -99,10 +101,12 @@ const getHostUrl = async function (projectName, environment) {
 }
 
 const getPages = function (projectName, environment) {
-  return environment === 'local' ?
-    fs.readdirSync(`${getProjectPath(projectName)}${path.sep}Views${path.sep}Home`)
-      .map(it => it.slice(0, it.indexOf('.'))) :
-    settings.pages;
+  if (environment === 'local') {
+    return fs.readdirSync(`${getProjectPath(projectName)}${path.sep}Views${path.sep}Home`)
+      .map(it => it.slice(0, it.indexOf('.')))
+  } else {
+    return settings.pages;
+  }
 }
 
 const getScenarios = async function (getProjectPath, projectName, environment) {

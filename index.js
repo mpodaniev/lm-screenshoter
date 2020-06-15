@@ -19,7 +19,7 @@ if (args.test || args.t) {
 
 let environment = 'local';
 if (args.env || args.e) {
-  evironment = args.env ? args.env : args.e
+  environment = args.env ? args.env : args.e
 }
 
 async function run() {
