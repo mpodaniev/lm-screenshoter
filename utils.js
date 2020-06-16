@@ -25,26 +25,20 @@ const getLocalhostUrls = function (projectName) {
   return [httpsUrl, httpUrl];
 }
 
-const checkHttpAvailable = function (url) {
-  return new Promise((resolve) => {
-    http.get(url, (res) => {
-      let statusCode = res.statusCode;
+const response = function (resolve) {
+  return (res) => {
+    const statusCode = res.statusCode;
 
-      if (statusCode === 200) {
-        resolve({statusCode});
-      } else {
-        resolve({
-          statusCode,
-          message: `ERROR: Some problems with the server. Please check host availability`
-        });
-      }
-
-    }).on('error', () => {
+    if (statusCode === 200) {
+      resolve({statusCode});
+    } else {
       resolve({
-        message: `ERROR: Host ${url} is not available`
+        statusCode,
+        message: `ERROR: Some problems with the server. Please check host availability`
       });
-    });
-  })
+    }
+  }
+
 }
 
 const checkHttpsAvailable = function (url) {
@@ -52,19 +46,17 @@ const checkHttpsAvailable = function (url) {
     if (url.includes('localhost')) {
       process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0; //Ignore invalid self-signed ssl certificate
     }
-    https.get(url, (res) => {
-      let statusCode = res.statusCode;
+    https.get(url, response(resolve)).on('error', () => {
+      resolve({
+        message: `ERROR: Host ${url} is not available`
+      });
+    });
+  })
+}
 
-      if (statusCode === 200) {
-        resolve({statusCode});
-      } else {
-        resolve({
-          statusCode,
-          message: `ERROR: Some problems with the server. Please check host availability`
-        });
-      }
-
-    }).on('error', () => {
+const checkHttpAvailable = function (url) {
+  return new Promise((resolve) => {
+    http.get(url, response(resolve)).on('error', () => {
       resolve({
         message: `ERROR: Host ${url} is not available`
       });
