@@ -11,7 +11,7 @@ In `settings.json` file you need set absolute path in `projectsDirectoryPath` pa
 
 For the run application you should use the next example command:
 
-`npm start -- --test --project="project-name"`
+`npm test -- --test --project="project-name"`
 
 where:
 
@@ -22,24 +22,24 @@ where:
 * `--project` -- set `project-name` to specify the project folder you'd like to test. You can use an alias `-p
 `. Also, you can use parameter without equals symbol like this: `-p project-name`.
 * `--env`  -- set environment to specify which environment you'd like to test. It can be `local` or `dev`. You can use an
- alias `-e`. By default set `local`.  
+ alias `-e`. By default set `local`. 
 
-Or you can run `npm run bs` and answer on questions with enjoy :)
+Or you can run `npm start` and answer on questions with enjoy :)
 
 ## Examples
 
 Run local environment test:
-* `npm start -- --test --project="bad-credit-loans.co"`
-* `npm start -- -t -p bad-credit-loans.co`
+* `npm test -- --test --project="bad-credit-loans.co"`
+* `npm test -- -t -p bad-credit-loans.co`
 
 Approve local environment test:
-* `npm start -- --approve --project="bad-credit-loans.co"`
-* `npm start -- -a -p bad-credit-loans.co`
+* `npm test -- --approve --project="bad-credit-loans.co"`
+* `npm test -- -a -p bad-credit-loans.co`
 
 Run development environment test:
-* `npm start -- --test --project="bad-credit-loans.co" --env="dev"`
-* `npm start -- -t -p bad-credit-loans.co -e dev`
+* `npm test -- --test --project="bad-credit-loans.co" --env="dev"`
+* `npm test -- -t -p bad-credit-loans.co -e dev`
 
 Approve development environment test:
-* `npm start -- --approve --project="bad-credit-loans.co" --env="dev"`
-* `npm start -- -a -p bad-credit-loans.co -e dev`
+* `npm test -- --approve --project="bad-credit-loans.co" --env="dev"`
+* `npm test -- -a -p bad-credit-loans.co -e dev`
