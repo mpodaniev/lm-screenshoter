@@ -38,7 +38,14 @@ const response = function (resolve) {
       });
     }
   }
+}
 
+const responseError = function (resolve, url) {
+ return () => {
+   resolve({
+     message: `ERROR: Host ${url} is not available`
+   });
+ }
 }
 
 const checkHttpsAvailable = function (url) {
@@ -46,21 +53,13 @@ const checkHttpsAvailable = function (url) {
     if (url.includes('localhost')) {
       process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0; //Ignore invalid self-signed ssl certificate
     }
-    https.get(url, response(resolve)).on('error', () => {
-      resolve({
-        message: `ERROR: Host ${url} is not available`
-      });
-    });
+    https.get(url, response(resolve)).on('error', responseError(resolve, url));
   })
 }
 
 const checkHttpAvailable = function (url) {
   return new Promise((resolve) => {
-    http.get(url, response(resolve)).on('error', () => {
-      resolve({
-        message: `ERROR: Host ${url} is not available`
-      });
-    });
+    http.get(url, response(resolve)).on('error', responseError(resolve, url));
   })
 }
 
