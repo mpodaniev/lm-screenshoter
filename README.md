@@ -22,7 +22,7 @@ where:
 * `--project` -- set `project-name` to specify the project folder you'd like to test. You can use an alias `-p
 `. Also, you can use parameter without equals symbol like this: `-p project-name`.
 * `--env`  -- set environment to specify which environment you'd like to test. It can be `local` or `dev`. You can use an
- alias `-e`. By default set `local`. 
+ alias `-e`. By default, set `local`. 
 
 Or you can run `npm start` and answer on questions with enjoy :)
 
