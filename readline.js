@@ -1,6 +1,6 @@
 const fs = require('fs');
 const {AutoComplete, Select, Input} = require('enquirer');
-const {launchBackstopLocal, launchBackstopDev, projectsDirectoryPath, checkLocalHost} = require('./utils');
+const {launchBackstop, projectsDirectoryPath} = require('./utils');
 
 const workflow = new Select({
   name: 'workflow',
@@ -31,16 +31,14 @@ async function run() {
   try {
     const commandToRun = await workflow.run();
     const environment = await env.run();
+    let projectName = '';
     if (environment === 'dev') {
-      const projectName = await projectUrl.run();
-      launchBackstopDev(commandToRun, projectName);
+      projectName = await projectUrl.run();
     } else {
-      const projectName = await autoCompleteProject.run();
-      const availableLocalHost = await checkLocalHost(projectName);
-      if (availableLocalHost) {
-        launchBackstopLocal(commandToRun, projectName);
-      }
+      projectName = await autoCompleteProject.run();
     }
+
+    launchBackstop(commandToRun, projectName, environment);
   } catch (e) {
     console.log(e);
   }
