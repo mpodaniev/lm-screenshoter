@@ -19,13 +19,20 @@ const projectUrl = new Input({
   initial: 'bad-credit-loans.co'
 });
 
-const autoCompleteProject = new AutoComplete({
-  name: 'projectName',
-  message: 'Choose your project',
-  limit: 10,
-  initial: 2,
-  choices: fs.readdirSync(projectsDirectoryPath)
-});
+const autoCompleteFunc = function () {
+  try {
+    return new AutoComplete({
+      name: 'projectName',
+      message: 'Choose your project',
+      limit: 10,
+      initial: 2,
+      choices: fs.readdirSync(projectsDirectoryPath)
+    });
+  } catch (e) {
+    throw '\nERROR: You should set right directory path in parameter "projectsDirectoryPath" in "settings.json" file'
+  }
+}
+
 
 async function run() {
   try {
@@ -35,7 +42,7 @@ async function run() {
     if (environment === 'dev') {
       projectName = await projectUrl.run();
     } else {
-      projectName = await autoCompleteProject.run();
+      projectName = await autoCompleteFunc().run();
     }
 
     launchBackstop(commandToRun, projectName, environment);
