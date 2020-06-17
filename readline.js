@@ -1,6 +1,6 @@
 const fs = require('fs');
 const {AutoComplete, Select, Input} = require('enquirer');
-const {launchBackstop, projectsDirectoryPath} = require('./utils');
+const {launchBackstop, getProjectsDirectoryPath} = require('./core');
 
 const workflow = new Select({
   name: 'workflow',
@@ -26,10 +26,10 @@ const autoCompleteFunc = function () {
       message: 'Choose your project',
       limit: 10,
       initial: 2,
-      choices: fs.readdirSync(projectsDirectoryPath)
+      choices: fs.readdirSync(getProjectsDirectoryPath())
     });
   } catch (e) {
-    throw '\nERROR: You should set right directory path in parameter "projectsDirectoryPath" in "settings.json" file'
+    throw e
   }
 }
 

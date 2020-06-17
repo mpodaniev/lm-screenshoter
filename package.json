@@ -2,9 +2,9 @@
   "name": "lm-screenshoter",
   "version": "0.4.0",
   "description": "Screenshoter for LM websites",
-  "main": "index.js",
+  "main": "readline.js",
   "scripts": {
-    "test": "node index.js",
+    "test": "node parameters.js",
     "start": "node readline.js",
     "init": "./node_modules/.bin/backstop init && rm backstop.json"
   },

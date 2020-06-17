@@ -1,5 +1,5 @@
 const args = require('yargs').argv;
-const {launchBackstop} = require('./utils');
+const {launchBackstop} = require('./core');
 
 let projectName = '';
 if (args.project || args.p) {
