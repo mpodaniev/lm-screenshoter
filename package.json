@@ -1,6 +1,6 @@
 {
   "name": "lm-screenshoter",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Screenshoter for LM websites",
   "main": "readline.js",
   "scripts": {
