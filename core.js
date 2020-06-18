@@ -1,13 +1,34 @@
-const settings = require('./settings.json');
+const defaultSettings = require('./default.settings.json');
 const fs = require('fs');
 const path = require('path');
 const backstop = require('backstopjs');
-const projectsDirectoryPath = settings.projectsDirectoryPath;
 const http = require('http');
 const https = require('https');
 
+const mergeSettings = function (obj1, obj2) {
+  return {...obj1, ...obj2}
+}
+
+const userSettings = './user.settings.json';
+let settings = defaultSettings;
+if (fs.existsSync(userSettings)) {
+  settings = mergeSettings(defaultSettings, require(userSettings));
+}
+
+
+const getProjectsDirectoryPath = function () {
+  try {
+    if (!fs.existsSync(settings.projectsDirectoryPath)) {
+      throw '\nERROR: You should set right directory path in parameter "projectsDirectoryPath" in "user.settings.json" file'
+    }
+    return settings.projectsDirectoryPath;
+  } catch (e) {
+    throw e;
+  }
+}
+
 const getProjectPath = function (projectName) {
-  let projectPath = `${projectsDirectoryPath}${path.sep}${projectName}`;
+  let projectPath = `${getProjectsDirectoryPath()}${path.sep}${projectName}`;
 
   if (fs.existsSync(projectPath.concat(`${path.sep}${projectName}`))) {
     projectPath = projectPath.concat(`${path.sep}${projectName}`);
@@ -133,4 +154,4 @@ exports.launchBackstop = async function (commandToRun, projectName, environment)
   }
 }
 
-exports.projectsDirectoryPath = projectsDirectoryPath;
+exports.getProjectsDirectoryPath = getProjectsDirectoryPath;
