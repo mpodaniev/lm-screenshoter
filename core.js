@@ -88,8 +88,7 @@ const getHostUrl = async function (projectName, environment) {
   let httpsUrl = '';
   let httpUrl = '';
   if (environment === 'local') {
-    httpsUrl = getLocalhostUrls(projectName)[0];
-    httpUrl = getLocalhostUrls(projectName)[1];
+    [httpsUrl, httpUrl] = getLocalhostUrls(projectName);
   }
   if (environment === 'dev') {
     httpsUrl = `https://${projectName.replace(/[.]/g, '_')}.lmwebsites.net`;
