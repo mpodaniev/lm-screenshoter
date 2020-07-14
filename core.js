@@ -1,4 +1,4 @@
-const defaultSettings = require('./default.settings.json');
+const defaultSettings = require('./settings/default.settings.json');
 const fs = require('fs');
 const path = require('path');
 const backstop = require('backstopjs');
@@ -9,7 +9,7 @@ const mergeSettings = function (obj1, obj2) {
   return {...obj1, ...obj2}
 }
 
-const userSettings = './user.settings.json';
+const userSettings = './settings/user.settings.json';
 let settings = defaultSettings;
 if (fs.existsSync(userSettings)) {
   settings = mergeSettings(defaultSettings, require(userSettings));
@@ -127,7 +127,7 @@ const getScenarios = async function (getProjectPath, projectName, environment) {
   return pages.map(page => {
     return {
       'label': page,
-      'url': hostUrl,
+      'url': `${hostUrl}/${page}`,
       'delay': 500,
       'misMatchThreshold': 0.1
     }

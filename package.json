@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node parameters.js",
     "start": "node readline.js",
-    "init": "./node_modules/.bin/backstop init && rm backstop.json"
+    "init": "npx backstop init && rm backstop.json"
   },
   "repository": {
     "type": "git",

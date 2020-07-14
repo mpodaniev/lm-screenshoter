@@ -6,7 +6,7 @@ First of all, should install packages `npm ci`.
 
 Then init backstop `npm run init`.
 
-If you want test local sites you should create file `user.settings.json` in the root directory and set absolute
+If you want test local sites you should create file `user.settings.json` in the `settings` directory and set absolute
  path in `projectsDirectoryPath` parameter for projects path. If you use Windows the example path should be like this
  : 'C:\\LM'.
 
