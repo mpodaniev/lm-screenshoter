@@ -94,6 +94,10 @@ const getHostUrl = async function (projectName, environment) {
     httpsUrl = `https://${projectName.replace(/[.]/g, '_')}.lmwebsites.net`;
     httpUrl = `${projectName.replace(/[.]/g, '_')}.lmwebsites.net`;
   }
+  if (environment === 'dev-static') {
+    httpsUrl = `https://${projectName.replace(/[.]/g, '_')}-static.lmwebsites.net`;
+    httpUrl = `${projectName.replace(/[.]/g, '_')}-static.lmwebsites.net`;
+  }
 
   const responseHttps = await checkHttpsAvailable(httpsUrl)
   if (responseHttps.statusCode === 200) {

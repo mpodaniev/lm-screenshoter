@@ -11,7 +11,7 @@ const workflow = new Select({
 const env = new Select({
   name: 'env',
   message: 'Choose environment',
-  choices: ['local', 'dev']
+  choices: ['local', 'dev', 'dev-static']
 });
 
 const projectUrl = new Input({
@@ -39,7 +39,7 @@ async function run() {
     const commandToRun = await workflow.run();
     const environment = await env.run();
     let projectName = '';
-    if (environment === 'dev') {
+    if (environment !== 'local') {
       projectName = await projectUrl.run();
     } else {
       projectName = await autoCompleteFunc().run();
